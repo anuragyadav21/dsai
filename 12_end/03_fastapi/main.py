@@ -50,6 +50,16 @@ se_by_hour_day = {
 
 # 2. DEFINE ENDPOINT ###################################
 
+@app.get("/")
+def root():
+    return {
+        "message": "Traffic prediction API is running.",
+        "docs": "/docs",
+        "predict_example": "/predict?day_of_week=1&hour_of_day=8",
+        "validation": "/validation",
+    }
+
+
 @app.get("/predict")
 def predict(day_of_week: int, hour_of_day: int):
     features = np.array([[day_of_week, hour_of_day]], dtype=float)

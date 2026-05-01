@@ -19,7 +19,7 @@ import requests
 
 load_dotenv(ROOT_DIR / "12_end" / ".env")
 
-ENDPOINT_URL = os.getenv("API_PUBLIC_URL", "http://localhost:8000").rstrip("/")
+ENDPOINT_URL = os.getenv("API_PUBLIC_URL", "http://localhost:8003").rstrip("/")
 MODEL = os.getenv("OLLAMA_MODEL", "smollm2:1.7b")
 
 UNIT_NOTE = "vehicles observed in one representative minute (1m/t1 interval) within the requested hour and day of week"
@@ -94,7 +94,7 @@ messages = [
     },
     {
         "role": "user",
-        "content": "Predict Brussels vehicle count for Monday for every hour (0 through 23).",
+        "content": "Predict Brussels vehicle count for Monday at 8 AM.",
     }
 ]
 tools = [tool_predict_vehicle_count]
