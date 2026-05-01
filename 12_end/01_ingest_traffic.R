@@ -13,6 +13,16 @@
 
 ## 0.1 Load Packages #################################
 
+local_lib = file.path(getwd(), ".r_libs")
+dir.create(local_lib, recursive = TRUE, showWarnings = FALSE)
+.libPaths(c(local_lib, .libPaths()))
+
+required_packages = c("httr2", "dplyr", "tibble", "purrr", "lubridate", "DBI", "RSQLite")
+missing_packages = required_packages[!vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)]
+if (length(missing_packages) > 0) {
+  install.packages(missing_packages, repos = "https://cloud.r-project.org", lib = local_lib)
+}
+
 library(httr2)
 library(dplyr)
 library(tibble)
